@@ -1,19 +1,57 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
-const SearchExercises = () => {
+import { fetchData, exerciseOptions } from "../utils/fetchData";
+import ScrollBar from "./ScrollBar";
+
+const SearchExercises = ({ setExercises, bodyPart, setBodyPart }: any) => {
+  const [search, setSearch] = useState<string>("");
+  const [bodyParts, setBodyParts] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchExercises = async () => {
+      const bodyPartsData: string[] = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+        exerciseOptions
+      );
+      setBodyParts(["all", ...bodyPartsData]);
+    };
+    fetchExercises();
+  }, []);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (search) {
+      const exercisesData = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises",
+        exerciseOptions
+      );
+      const searchedExercises = exercisesData.filter(
+        (exercise: any) =>
+          exercise.name.toLowerCase().includes(search) ||
+          exercise.target.toLowerCase().includes(search) ||
+          exercise.equipment.toLowerCase().includes(search) ||
+          exercise.bodyPart.toLowerCase().includes(search)
+      );
+      setSearch("");
+      setExercises(searchedExercises);
+    }
+  };
+
   return (
     <main className="container mx-auto">
       <h2 className="text-3xl flex justify-center font-semibold my-3 align-middle text-center">
         Awesome Exercises You <br /> Should Know
       </h2>
       <div className="relative">
-        <form className="mx-auto">
+        <form className="mx-auto" onSubmit={handleSearch}>
           <div className="flex">
-            <div className="relative w-full my-3">
+            <div className="relative w-full my-5">
               <input
-                type="search"
+                type="text"
                 id="location-search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value.toLowerCase())}
                 className="block w-full z-20 p-3 text-sm h-10 focus:outline-gray-400 bg-[#e8e8e8]"
                 placeholder="Search Exercises..."
                 required
@@ -42,6 +80,13 @@ const SearchExercises = () => {
             </div>
           </div>
         </form>
+      </div>
+      <div className="relative p-5 ">
+        <ScrollBar
+          data={bodyParts}
+          setBodyPart={setBodyPart}
+          bodyPart={bodyPart}
+        />
       </div>
     </main>
   );
