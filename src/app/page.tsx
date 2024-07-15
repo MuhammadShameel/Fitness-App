@@ -13,7 +13,7 @@ interface Exercise {
 }
 
 export default function Home() {
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState<any[]>([]);
   const [bodyPart, setBodyPart] = useState("all");
 
   return (
@@ -25,9 +25,9 @@ export default function Home() {
         setBodyPart={setBodyPart}
       />
       <Exercises
-        setExercises={setExercises}
-        bodyPart={bodyPart}
-        setBodyPart={setBodyPart}
+      // setExercises={setExercises}
+      // bodyPart={bodyPart}
+      // setBodyPart={setBodyPart}
       />
     </main>
   );
