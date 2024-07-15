@@ -21,8 +21,8 @@ const ScrollBar: React.FC<ScrollBarProps> = ({
   return (
     <ScrollMenu
       wrapperClassName="scrollhost"
-      LeftArrow={LeftArrow}
-      RightArrow={RightArrow}
+      LeftArrow={<LeftArrow />}
+      RightArrow={<RightArrow />}
     >
       {data?.map((item: any) => (
         <div
