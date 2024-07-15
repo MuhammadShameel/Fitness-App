@@ -4,7 +4,17 @@ import React, { useEffect, useState } from "react";
 import { fetchData, exerciseOptions } from "../utils/fetchData";
 import ScrollBar from "./ScrollBar";
 
-const SearchExercises = ({ setExercises, bodyPart, setBodyPart }: any) => {
+interface SearchExercisesProps {
+  setExercises: (exercises: any[]) => void;
+  bodyPart: string;
+  setBodyPart: (bodyPart: string) => void;
+}
+
+const SearchExercises: React.FC<SearchExercisesProps> = ({
+  setExercises,
+  bodyPart,
+  setBodyPart,
+}) => {
   const [search, setSearch] = useState<string>("");
   const [bodyParts, setBodyParts] = useState<string[]>([]);
 
@@ -58,7 +68,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }: any) => {
               />
               <button
                 type="submit"
-                className="absolute top-0 right-0 bottom-0 p-2.5 h-10 text-sm font-medium text-white bg-[#fe4040] "
+                className="absolute top-0 right-0 bottom-0 p-2.5 h-10 text-sm font-medium text-white bg-[#fe4040]"
               >
                 <svg
                   aria-hidden="true"
@@ -81,7 +91,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }: any) => {
           </div>
         </form>
       </div>
-      <div className="relative p-5 ">
+      <div className="relative p-5">
         <ScrollBar
           data={bodyParts}
           setBodyPart={setBodyPart}

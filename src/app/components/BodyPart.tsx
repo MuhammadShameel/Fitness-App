@@ -23,7 +23,7 @@ const BodyPart: React.FC<BodyPartProps> = ({ item, bodyPart, setBodyPart }) => {
       <div className="relative w-[40px] h-[40px]">
         <Image src={Icon} alt="" layout="fill" objectFit="contain" />
       </div>
-      <div className="text-2xl font-medium  text-center mt-3 text-[#3a1212] capitalize w-max">
+      <div className="text-2xl font-medium text-center mt-3 text-[#3a1212] capitalize w-max">
         {item}
       </div>
     </div>

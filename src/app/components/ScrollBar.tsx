@@ -9,8 +9,8 @@ import RightArrow from "./RightArrow";
 
 interface ScrollBarProps {
   data: any[];
-  bodyPart: any;
-  setBodyPart: (bodyPart: any) => void;
+  bodyPart: string;
+  setBodyPart: (bodyPart: string) => void;
 }
 
 const ScrollBar: React.FC<ScrollBarProps> = ({
