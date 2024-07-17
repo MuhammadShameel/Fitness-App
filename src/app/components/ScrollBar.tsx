@@ -9,8 +9,8 @@ import RightArrow from "./RightArrow";
 
 interface ScrollBarProps {
   data: any[];
-  bodyPart: string;
-  setBodyPart: (bodyPart: string) => void;
+  bodyPart: any;
+  setBodyPart: (bodyPart: any) => void;
 }
 
 const ScrollBar: React.FC<ScrollBarProps> = ({
@@ -29,7 +29,7 @@ const ScrollBar: React.FC<ScrollBarProps> = ({
           key={item.id || item}
           itemID={item.id || item}
           title={item.id || item}
-          className="my-40"
+          className="my-20"
         >
           <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} />
         </div>
