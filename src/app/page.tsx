@@ -3,18 +3,11 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import SearchExercises from "./components/SearchExercises";
 import Exercises from "./components/Exercises";
-
-interface Exercise {
-  id: string;
-  name: string;
-  target: string;
-  equipment: string;
-  bodyPart: string;
-}
+import { Exercise } from "./types"; // Adjust the import path as needed
 
 export default function Home() {
-  const [exercises, setExercises] = useState<any[]>([]);
-  const [bodyPart, setBodyPart] = useState("all");
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [bodyPart, setBodyPart] = useState<string>("all");
 
   return (
     <main>
@@ -25,9 +18,9 @@ export default function Home() {
         setBodyPart={setBodyPart}
       />
       <Exercises
-      // setExercises={setExercises}
-      // bodyPart={bodyPart}
-      // setBodyPart={setBodyPart}
+        setExercises={setExercises}
+        bodyPart={bodyPart}
+        exercises={exercises}
       />
     </main>
   );
