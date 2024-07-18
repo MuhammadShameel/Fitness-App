@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const exerciseOptions = {
   method: "GET",
   headers: {
@@ -6,8 +8,12 @@ export const exerciseOptions = {
   },
 };
 
-export const fetchData = async (url: any, options: any) => {
-  const response = await fetch(url, options);
-  const data = await response.json();
-  return data;
+export const fetchData = async (url: string, options: any) => {
+  try {
+    const response = await axios.request({ url, ...options });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
