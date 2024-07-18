@@ -8,7 +8,7 @@ import { Exercise } from "./types"; // Adjust the import path as needed
 export default function Home() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [bodyPart, setBodyPart] = useState<string>("all");
-
+  console.log(bodyPart);
   return (
     <main>
       <Navbar />
