@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
+import { Exercise } from "../types"; // Adjust the import path as needed
 import { fetchData, exerciseOptions } from "../utils/fetchData";
 import ScrollBar from "./ScrollBar";
 
 interface SearchExercisesProps {
-  setExercises: (exercises: any[]) => void;
+  setExercises: (exercises: Exercise[]) => void;
   bodyPart: string;
   setBodyPart: (bodyPart: string) => void;
 }
@@ -19,30 +19,42 @@ const SearchExercises: React.FC<SearchExercisesProps> = ({
   const [bodyParts, setBodyParts] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchExercises = async () => {
+    const fetchBodyParts = async () => {
       const bodyPartsData: string[] = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
         exerciseOptions
       );
       setBodyParts(["all", ...bodyPartsData]);
     };
-    fetchExercises();
-  }, []);
+
+    const fetchAllExercises = async () => {
+      const exercisesData: Exercise[] = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises",
+        exerciseOptions
+      );
+      setExercises(exercisesData);
+    };
+
+    fetchBodyParts();
+    fetchAllExercises();
+  }, [setExercises]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (search) {
-      const exercisesData = await fetchData(
+      const exercisesData: Exercise[] = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises",
         exerciseOptions
       );
+
       const searchedExercises = exercisesData.filter(
-        (exercise: any) =>
+        (exercise: Exercise) =>
           exercise.name.toLowerCase().includes(search) ||
           exercise.target.toLowerCase().includes(search) ||
           exercise.equipment.toLowerCase().includes(search) ||
           exercise.bodyPart.toLowerCase().includes(search)
       );
+
       setSearch("");
       setExercises(searchedExercises);
     }
@@ -91,7 +103,7 @@ const SearchExercises: React.FC<SearchExercisesProps> = ({
           </div>
         </form>
       </div>
-      <div className="relative p-5">
+      <div className="p-5 h-[200px]">
         <ScrollBar
           data={bodyParts}
           setBodyPart={setBodyPart}
