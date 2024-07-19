@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Navbar from "./components/Navbar";
 import SearchExercises from "./components/SearchExercises";
 import Exercises from "./components/Exercises";
 import { Exercise } from "./types"; // Adjust the import path as needed
@@ -11,7 +10,6 @@ export default function Home() {
   console.log(bodyPart);
   return (
     <main>
-      <Navbar />
       <SearchExercises
         setExercises={setExercises}
         bodyPart={bodyPart}
