@@ -27,7 +27,7 @@ const Detail = ({ exerciseDetail }: any) => {
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <Image
-            className="lg:w-1/2 w-full h-auto  object-cover p-5 object-center rounded"
+            className="lg:w-1/2 w-full h-auto  object-contain p-5 object-center rounded"
             width={100}
             height={100}
             alt={name}
