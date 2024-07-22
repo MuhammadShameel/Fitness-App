@@ -66,16 +66,15 @@ const ExerciseDetail: React.FC = () => {
   if (!exerciseDetail) return <div>No Data</div>;
   return (
     <div>
-      ExerciseDetail
       <Detail exerciseDetail={exerciseDetail} />
       <ExerciseVideo
         exerciseVideos={exerciseVideos}
         name={exerciseDetail.name}
       />
-      {/* <SimilarExercise
+      <SimilarExercise
         targetMuscleExercises={targetMuscleExercises}
         equipmentExercises={equipmentExercises}
-      /> */}
+      />
     </div>
   );
 };
