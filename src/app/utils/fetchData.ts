@@ -3,7 +3,7 @@ import axios from "axios";
 export const exerciseOptions = {
   method: "GET",
   headers: {
-    "x-rapidapi-key": "2d7e86b351msh4ac7f58f2ee13f0p148c9djsndf806a46fbc5",
+    "x-rapidapi-key": "e6e7aa69b6msh09132a1c2a2df7cp11b8b5jsne4862f5b97ec",
     "x-rapidapi-host": "exercisedb.p.rapidapi.com",
   },
 };
@@ -11,7 +11,7 @@ export const exerciseOptions = {
 export const youtubeOptions = {
   method: "GET",
   headers: {
-    "x-rapidapi-key": "2d7e86b351msh4ac7f58f2ee13f0p148c9djsndf806a46fbc5",
+    "x-rapidapi-key": "e6e7aa69b6msh09132a1c2a2df7cp11b8b5jsne4862f5b97ec",
     "x-rapidapi-host": "youtube-search-and-download.p.rapidapi.com",
   },
 };
