@@ -6,6 +6,7 @@ import "react-horizontal-scrolling-menu/dist/styles.css";
 import BodyPart from "./BodyPart";
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
+import ExerciseCard from "./ExerciseCard";
 
 interface ScrollBarProps {
   data: any[];
@@ -31,7 +32,16 @@ const ScrollBar: React.FC<ScrollBarProps> = ({
           title={item.id || item}
           className="my-20"
         >
-          <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+          {/* <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} /> */}
+          {bodyPart ? (
+            <BodyPart
+              item={item}
+              setBodyPart={setBodyPart}
+              bodyPart={bodyPart}
+            />
+          ) : (
+            <ExerciseCard exercise={item} />
+          )}
         </div>
       ))}
     </ScrollMenu>
